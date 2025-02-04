@@ -9,30 +9,37 @@ import Layout from './components/Layout/Layout';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import AuthProvider from './Providers/AuthProvider';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
     // errorElement : <div>Error 404</div>,
-    children : [
+    children: [
       {
-        path : '/',
-        element : <Home></Home>
+        path: '/',
+        element: <Home></Home>
       },
       {
-        path : '/login',
-        element : <Login></Login>
+        path: '/login',
+        element: <Login></Login>
       },
       {
-        path : '/signup',
-        element : <SignUp></SignUp>
+        path: '/signup',
+        element: <SignUp></SignUp>
       }
     ]
   },
 ]);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    {/* add into the AuthProvider components */}
+    {/* <RouterProvider router={router} /> */}
+
+    {/* and same as authProvider is add on main component */}
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 )
