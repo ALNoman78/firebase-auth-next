@@ -1,19 +1,42 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
+import { sendEmailVerification } from 'firebase/auth';
+import auth from '../../firebase.init';
 
-const SignUp = props => {
+const SignUp = () => {
+    const [error, setError] = useState('')
+    const [success , setSuccess] = useState(false)
     const [isVisible, setIsVisible] = useState(false);
+
+    const { createUser } = useContext(AuthContext)
 
     const handleSignUp = e => {
         e.preventDefault()
+        setError('')
+        setSuccess(false)
 
         const name = e.target.username.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log(name , email , password)
+        console.log(name, email, password)
+        createUser(email, password)
+            .then((result) => {
+                console.log(result.user)
+                setSuccess(true)
+                sendEmailVerification(auth.currentUser)
+                    .then(() => {
+                        console.log('verification code sent')
+                    })
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+                setSuccess(false)
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -46,6 +69,12 @@ const SignUp = props => {
                             </div>
                             <button className="btn btn-neutral mt-4">Sign Up</button>
                         </form>
+                        {
+                            error && <p className='text-xl font-medium text-red-600'>{error}</p>
+                        }
+                        {
+                            success && <p className='text-xl font-medium text-green-600'>Successfull Submitted</p>
+                        }
                         <Link to='/login' className='inline-flex gap-2'>Already have an account ?<p className='underline font-medium text-green-500'>Log in</p></Link>
                     </div>
                 </div>

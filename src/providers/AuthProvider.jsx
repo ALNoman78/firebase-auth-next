@@ -1,11 +1,20 @@
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth'
 import React, { createContext } from 'react'
+import auth from '../firebase.init'
 
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
 
+    const createUser = (email , password) => {
+        return createUserWithEmailAndPassword(auth, email , password)
+        
+    }
+
+    const name = 'Maisa Monoara Moule';
+
     const authInfo = {
-        name : 'Moule',
+        name , createUser
     }
     return (
         <div>

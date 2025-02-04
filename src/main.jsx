@@ -39,6 +39,7 @@ createRoot(document.getElementById('root')).render(
 
     {/* and same as authProvider is add on main component */}
     <AuthProvider>
+      {/* now children of auth provider component */}
       <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>
