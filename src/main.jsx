@@ -5,11 +5,30 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Layout from './components/Layout/Layout';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Layout></Layout>,
+    errorElement : <div className='text-4xl font-bold text-center'>Error 404</div>,
+    children : [
+      {
+        path : '/',
+        element : <Home></Home>
+      },
+      {
+        path : '/login',
+        element : <Login></Login>
+      },
+      {
+        path : '/signup',
+        element : <SignUp></SignUp>
+      }
+    ]
   },
 ]);
 createRoot(document.getElementById('root')).render(
