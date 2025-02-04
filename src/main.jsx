@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout></Layout>,
-    errorElement : <div className='text-4xl font-bold text-center'>Error 404</div>,
+    // errorElement : <div>Error 404</div>,
     children : [
       {
         path : '/',
@@ -33,6 +33,6 @@ const router = createBrowserRouter([
 ]);
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
-  </StrictMode>,
+    <RouterProvider router={router} />
+  </StrictMode>
 )
