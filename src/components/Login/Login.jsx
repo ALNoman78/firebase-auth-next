@@ -1,18 +1,36 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types'
+import { useContext, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const Login = () => {
+    const [success, setSuccess] = useState(false)
+    const [error, setError] = useState('')
     const [isVisible, setIsVisible] = useState(false);
+
+    const { signInUser } = useContext(AuthContext)
+    console.log(signInUser)
 
     const handleLogIn = e => {
         e.preventDefault();
 
-        const name = e.target.email.value;
+        const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log(name , password)
+        setError('')
+        setSuccess(false)
+
+        console.log(name, password)
+
+        signInUser(email, password)
+            .then(() => {
+                console.log('Login Successful')
+                setSuccess(true)
+            })
+            .catch(error => {
+                setError(error.message)
+                setSuccess(false)
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -43,6 +61,12 @@ const Login = () => {
                             <div><a className="link link-hover">Forgot password?</a></div>
                             <button className="btn btn-neutral mt-4">Login</button>
                         </form>
+                        {
+                            success && <p className='text-xl font-medium text-green-600'>Log In Successful </p>
+                        }
+                        {
+                            error && <p className='text-red-500 font-medium text-xl'>{error}</p>
+                        }
                         <Link to='/signup' className='inline-flex gap-2'>Create an account ?<p className='underline font-medium text-green-500'>Sign Up</p></Link>
                     </div>
                 </div>
