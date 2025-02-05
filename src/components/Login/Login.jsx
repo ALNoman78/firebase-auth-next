@@ -9,7 +9,6 @@ const Login = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const { signInUser } = useContext(AuthContext)
-    console.log(signInUser)
 
     const handleLogIn = e => {
         e.preventDefault();
@@ -20,7 +19,7 @@ const Login = () => {
         setError('')
         setSuccess(false)
 
-        console.log(name, password)
+        // console.log(name, password)
 
         signInUser(email, password)
             .then(() => {

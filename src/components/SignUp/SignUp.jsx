@@ -15,6 +15,7 @@ const SignUp = () => {
 
     const handleSignUp = e => {
         e.preventDefault()
+
         setError('')
         setSuccess(false)
 
@@ -22,7 +23,8 @@ const SignUp = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log(name, email, password)
+        // console.log(name, email, password)
+
         createUser(email, password)
             .then((result) => {
                 console.log(result.user)
