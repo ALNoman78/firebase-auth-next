@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 const Login = () => {
     const [success, setSuccess] = useState(false)
@@ -61,11 +62,20 @@ const Login = () => {
                             <button className="btn btn-neutral mt-4">Login</button>
                         </form>
                         {
-                            success && <p className='text-xl font-medium text-green-600'>Log In Successful </p>
+                            success && <div className="toast toast-top toast-center">
+                                <div className="alert alert-success">
+                                    <span>Message sent successfully.</span>
+                                </div>
+                            </div>
                         }
                         {
-                            error && <p className='text-red-500 font-medium text-xl'>{error}</p>
+                            error && <div className="toast toast-top toast-center">
+                                <div className="alert alert-info bg-red-400">
+                                    <span>{error}</span>
+                                </div>
+                            </div>
                         }
+
                         <Link to='/signup' className='inline-flex gap-2'>Create an account ?<p className='underline font-medium text-green-500'>Sign Up</p></Link>
                     </div>
                 </div>

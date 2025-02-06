@@ -10,6 +10,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import AuthProvider from './Providers/AuthProvider';
+import { ToastContainer } from 'react-toastify';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       {/* now children of auth provider component */}
       <RouterProvider router={router} />
+      <ToastContainer></ToastContainer>
     </AuthProvider>
   </StrictMode>
 )
