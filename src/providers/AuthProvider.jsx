@@ -13,8 +13,6 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth , email, password)
     }
 
-    const name = 'Maisa Monoara Moule';
-
     const authInfo = {
         name , createUser , signInUser
     }
