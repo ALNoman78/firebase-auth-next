@@ -47,6 +47,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                {/* update profile with name and profile pictures  */}
                 {
                     user ?
                         <>
