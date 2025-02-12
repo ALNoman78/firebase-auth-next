@@ -10,7 +10,7 @@ const Login = () => {
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate()
 
-    const { signInUser, signInWithGoogle } = useContext(AuthContext)
+    const { signInUser, signInWithGoogle , signInWithGithub } = useContext(AuthContext)
 
     const handleLogIn = e => {
         e.preventDefault();
@@ -48,6 +48,17 @@ const Login = () => {
                 setError(error.message)
                 console.log(error)
             })
+    }
+
+    const handleGithubSignIn = () => {
+        signInWithGithub()
+        .then((result) => {
+            console.log(result.user)
+            navigate('/')
+        })
+        .catch((error) => {
+            setError(error.message)
+        })
     }
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -93,7 +104,7 @@ const Login = () => {
                             </div>
                         }
                         <button onClick={handleSignInGoogle} className='btn'>Sign In Google</button>
-                        <button className='btn'>Sign In GitHub</button>
+                        <button onClick={handleGithubSignIn}  className='btn'>Sign In GitHub</button>
                         <Link to='/signup' className='inline-flex gap-2'>Create an account ?<p className='underline font-medium text-green-500'>Sign Up</p></Link>
                     </div>
                 </div>
