@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { Bounce, ToastContainer } from 'react-toastify';
 
@@ -8,6 +8,7 @@ const Login = () => {
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
     const [isVisible, setIsVisible] = useState(false);
+    const navigate = useNavigate()
 
     const { signInUser } = useContext(AuthContext)
 
@@ -26,6 +27,10 @@ const Login = () => {
             .then(() => {
                 console.log('Login Successful')
                 setSuccess(true)
+                // reset the form here
+                e.target.reset()
+                // reset and go to home page
+                navigate('/')
             })
             .catch(error => {
                 setError(error.message)

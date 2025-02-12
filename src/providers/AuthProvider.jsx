@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const signInUser = (email, password) => {
-        //  why use setLoading here ? => because we want to wait our user for log in true/false untill firebase send us confirmation
+        //  why use setLoading here ? => because we want to wait our user for log in true/false until firebase send us confirmation
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
