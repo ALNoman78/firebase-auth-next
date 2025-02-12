@@ -13,6 +13,7 @@ import AuthProvider from './Providers/AuthProvider';
 import { ToastContainer } from 'react-toastify';
 import Order from './components/Order/Order';
 import PrivateRoute from './components/routes/PrivateRoute';
+import Profile from './components/Profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/orders',
         element: <PrivateRoute><Order></Order></PrivateRoute>
+      },
+      {
+        path : '/profile',
+        element : <PrivateRoute><Profile></Profile></PrivateRoute>
       }
     ]
   },

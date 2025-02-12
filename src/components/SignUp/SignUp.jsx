@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Eye, EyeOff } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import { sendEmailVerification } from 'firebase/auth';
 import auth from '../../firebase.init';
@@ -10,6 +10,8 @@ const SignUp = () => {
     const [error, setError] = useState('')
     const [success , setSuccess] = useState(false)
     const [isVisible, setIsVisible] = useState(false);
+
+    const navigate = useNavigate()
 
     const { createUser } = useContext(AuthContext)
 
@@ -32,6 +34,9 @@ const SignUp = () => {
                 sendEmailVerification(auth.currentUser)
                     .then(() => {
                         console.log('verification code sent')
+                        e.target.reset()
+                        navigate('/')
+
                     })
             })
             .catch(error => {

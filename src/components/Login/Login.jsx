@@ -10,7 +10,7 @@ const Login = () => {
     const [isVisible, setIsVisible] = useState(false);
     const navigate = useNavigate()
 
-    const { signInUser } = useContext(AuthContext)
+    const { signInUser, signInWithGoogle } = useContext(AuthContext)
 
     const handleLogIn = e => {
         e.preventDefault();
@@ -35,6 +35,18 @@ const Login = () => {
             .catch(error => {
                 setError(error.message)
                 setSuccess(false)
+            })
+    }
+
+    const handleSignInGoogle = () => {
+        signInWithGoogle()
+            .then((result) => {
+                console.log('Sign In with google', result.user)
+                navigate('/')
+            })
+            .catch(error => {
+                setError(error.message)
+                console.log(error)
             })
     }
     return (
@@ -80,7 +92,8 @@ const Login = () => {
                                 </div>
                             </div>
                         }
-
+                        <button onClick={handleSignInGoogle} className='btn'>Sign In Google</button>
+                        <button className='btn'>Sign In GitHub</button>
                         <Link to='/signup' className='inline-flex gap-2'>Create an account ?<p className='underline font-medium text-green-500'>Sign Up</p></Link>
                     </div>
                 </div>
