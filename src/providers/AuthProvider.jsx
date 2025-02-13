@@ -11,13 +11,13 @@ const AuthProvider = ({ children }) => {
 
     const googleProvider = new GoogleAuthProvider()
     const githubProvider = new GithubAuthProvider()
-
+    //  google sign in method
     const signInWithGoogle = () => {
-        return signInWithPopup(auth , googleProvider)
+        return signInWithPopup(auth, googleProvider)
     }
-
+    // github sign in method
     const signInWithGithub = () => {
-        return signInWithPopup(auth , githubProvider)
+        return signInWithPopup(auth, githubProvider)
     }
 
     const createUser = (email, password) => {
